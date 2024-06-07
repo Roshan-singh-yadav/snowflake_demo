@@ -35,12 +35,12 @@ const connection = snowflake.createConnection({
 });
 
 // 4.2.3 create the connection to the Snowflake account
-connection.connect((err, conn) => {
-  if (err) {
-    console.error("Unable to connect to Snowflake", err);
-  } else {
+try {
+  connection.connect((err, conn) => {
     console.log("Connected to snowflake : " + JSON.stringify(conn));
-  }
-});
+  });
+} catch (err) {
+  console.error("Unable to connect to Snowflake", err);
+}
 
 module.exports = connection;
