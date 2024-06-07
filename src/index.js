@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require("body-parser");
 
 // for establishing connection
-const connection = require("./src/libraries/connect")
-const homeRoute = require("./src/routes/index")
+const connection = require("./libraries/connect")
+const homeRoute = require("./routes/index")
 
 
 const app = express();
