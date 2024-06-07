@@ -5,13 +5,20 @@ const bodyParser = require("body-parser");
 const connection = require("./libraries/connect")
 const homeRoute = require("./routes/index")
 
-
 const app = express();
-const PORT = 8000 || process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
-app.use(bodyParser.urlencoded({extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("/" , homeRoute)
+app.use("/", homeRoute);
 
-app.listen(PORT, console.log('Server is running on port: ' + PORT));
+app.listen(PORT, () => {
+    console.log('Server is running on port: ' + PORT);
+});
+
+// Error handling
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
